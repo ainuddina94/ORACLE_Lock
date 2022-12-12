@@ -1,0 +1,93 @@
+login as: oracle
+oracle@192.168.247.10's password:
+Last login: Sat Dec 10 23:52:44 2022
+[oracle@Ahamad ~]$ ps -ef|grep omon
+oracle    4438  3874  0 23:21 pts/0    00:00:00 grep --color=auto omon
+[oracle@Ahamad ~]$ ps -ef|grep pmon
+grid      2965     1  0 23:19 ?        00:00:00 asm_pmon_+ASM
+oracle    3254     1  0 23:19 ?        00:00:00 ora_pmon_orcl
+oracle    4710  3874  0 23:21 pts/0    00:00:00 grep --color=auto pmon
+[oracle@Ahamad ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sun Dec 11 23:21:56 2022
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+SQL> create table test_table(id# number,value varchar2(20));
+
+Table created.
+
+SQL> insert into test_table values(1,'val1');
+
+1 row created.
+
+SQL> select * from test_table;
+
+       ID# VALUE
+---------- --------------------
+         1 val1
+
+SQL> select * from test_table;
+
+       ID# VALUE
+---------- --------------------
+         1 val1
+
+SQL> select * from test_table;
+
+       ID# VALUE
+---------- --------------------
+         1 val1
+         2 val 2
+         1 val1
+
+SQL> commit;
+
+Commit complete.
+
+SQL>  insert into test
+  2  -
+  3
+SQL>
+SQL>
+SQL> insert into test_1(id# number primary key, value varchar2(20));
+insert into test_1(id# number primary key, value varchar2(20))
+                       *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into test_1(id# number primary key,value varchar2(20));
+insert into test_1(id# number primary key,value varchar2(20))
+                       *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL>  insert into test_1(id# number ,primary key,value varchar2(20));
+ insert into test_1(id# number ,primary key,value varchar2(20))
+                        *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> create table test_1((id# number primary key,value varchar2(20));
+create table test_1((id# number primary key,value varchar2(20))
+                    *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+SQL>  create table test_1(id# number primary key,value varchar2(20));
+
+Table created.
+
+SQL>
+SQL>
+SQL>  insert into test_1 values(1,'9999');
+
+1 row created.

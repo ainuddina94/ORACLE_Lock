@@ -1,0 +1,74 @@
+login as: oracle
+oracle@192.168.247.10's password:
+Last login: Sun Dec 11 23:20:12 2022 from 192.168.247.14
+[oracle@Ahamad ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sun Dec 11 23:27:13 2022
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+SQL> select * from test_table;
+
+no rows selected
+
+SQL> desc test_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID#                                                NUMBER
+ VALUE                                              VARCHAR2(20)
+
+SQL> insert into test_table values(2,'val 2');
+
+1 row created.
+
+SQL>
+SQL>
+SQL>  select * from test_table;
+
+       ID# VALUE
+---------- --------------------
+         2 val 2
+
+SQL>
+SQL>
+SQL>  insert into test_table values(1,'val1');
+
+1 row created.
+
+SQL>  desc test_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID#                                                NUMBER
+ VALUE                                              VARCHAR2(20)
+
+SQL>  select * from test_table;
+
+       ID# VALUE
+---------- --------------------
+         2 val 2
+         1 val1
+
+SQL> commit;
+
+Commit complete.
+
+SQL>  select * from test_table;
+
+       ID# VALUE
+---------- --------------------
+         1 val1
+         2 val 2
+         1 val1
+
+SQL>  insert into test_1 values(1,'9999');
+
+
+ insert into test_1 values(1,'9999')
+             *
+ERROR at line 1:
+ORA-00028: your session has been killed
+
